@@ -17,15 +17,13 @@ HEADERS = {
 
     "Quarterly": [
      input(headerQ)
-
-    ],
-             
+    ]
+                 
     }
 
 SELECT = {
     "RepeatSales": HEADERS["RepeatSales"],
-    "Quarterly": headerQ
-    
+    "Quarterly": headerQ   
     }
 
 def concatenate(prefix="RepeatSales"):
@@ -35,7 +33,7 @@ def concatenate(prefix="RepeatSales"):
         if not f.startswith(prefix):
             continue
         
-        if prefix is "RepeatSales":
+        if prefix is not "Quarterly":
             data = pd.read_csv(os.path.join(settings.DATA_DIR, f), sep=',', header=None, names=HEADERS[prefix], index_col=False)
         else:
             data = pd.read_csv(os.path.join(settings.DATA_DIR, f), sep=',', header=None, names=headerQ, index_col=False)
