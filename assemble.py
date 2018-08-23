@@ -3,9 +3,13 @@ import os
 import settings
 import pandas as pd 
 
+# def getHeaderList(filePath):
+#     with open(filePath) as header:
+#         headerQ = header.readline().split(',')
+#     return headerQ
 
-# with open(settings.HEADERS_PATH) as header:
-#     headerQ = header.readline().split(',')
+
+
 
 
 HEADERS = {
@@ -14,14 +18,15 @@ HEADERS = {
     ],
 
     "Quarterly": [
-    
+        
     ],
                  
     }
 
 SELECT = {
     "RepeatSales": HEADERS["RepeatSales"],
-    "Quarterly": HEADERS["Quarterly"]  
+    "Quarterly": HEADERS["Quarterly"] 
+
     }
 
 def concatenate(prefix="RepeatSales"):
@@ -32,7 +37,7 @@ def concatenate(prefix="RepeatSales"):
             continue
         
         data = pd.read_csv(os.path.join(settings.DATA_DIR, fName), sep=',', header=0, index_col=False)
-        # data = data[SELECT[prefix]]
+        #data = data[SELECT[prefix]]
         full.append(data)
 
     full = pd.concat(full, axis=0)
